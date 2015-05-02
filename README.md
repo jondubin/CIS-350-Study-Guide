@@ -3,3 +3,5 @@
 Created with Emacs Org mode.
 
 In emacs, you can export the document as html or latex with `C-c C-e`
+
+Beware: the .html and .tex files might be out of date.
