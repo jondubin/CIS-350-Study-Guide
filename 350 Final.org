@@ -1,0 +1,257 @@
+#+INFOJS_OPT: view:t toc:t ltoc:t mouse:underline buttons:0 path:http://thomasf.github.io/solarized-css/org-info.min.js
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://thomasf.github.io/solarized-css/solarized-light.min.css" />
+
+* CIS 350 Final
+
+75 point exam. 120 minutes. Double sided study sheet
+
+* First Half (25%)
+** TODO software process models
+** TODO agile
+** TODO software configuration management
+** TODO requirements gathering and coumentation
+** TODO requirement analysis
+** TODO software architecture
+** TODO design concepts
+** TODO design patterns
+
+* Second Half (75%)
+** DONE usability and UI
+   - Why is usability important?
+     - *Therac-25* case study
+       - Radiation therapy machine involved in at least 6 accidents
+         between 1985-1987
+       - patients were give massive overdoses of radiation
+       - It moved some safety features from hardware to software
+       - Software from the older version (Therac-20) was reused and
+         was assumed to be workign correctly
+       - *Hamilton, Ontario, July 1985*
+         - During treatment, machine stopped and reported "no does"
+         - This was a common occurence, so the technician pressed "P"
+           to proceed and re-deliver the dose
+         - This happened four more times, after which the machine went
+           into suspend mode
+         - Patient received 5x dose and died four months later
+       - In Tyler Texas (1986) a technician reported "Malfunction 54"
+         which did not exist in the user manuel
+         - the operator had requested 202 units, but only 6 were
+           delivered and the patient died five months later
+         - the manufacturer could not reproduce this bug so the
+           machine was put back into service
+         - Malfunction 54 happened again five weeks later and another
+           patient died
+   - Definition of usability: *Five E's*
+     - Effective
+     - Efficient
+     - Engaging
+     - Error Tolerant
+     - Easy to learn
+   - User-centered design
+     - needs, wants, and limitations of end users are given extensive attention
+   - Information visualization and metaphors
+   - Measuring usability: studies, heuristics, metrics
+     - *Heuristics*
+       - general guidelines or widely accepted "best practices"
+       - Nielsen's usability heuristics
+         - Match between system and real world (skeumorphism)
+         - Consistency and standards
+         - Help and documentation
+         - User control and freedom
+         - visibility of system status
+         - Flexibility and efficiency of use
+         - error prevention
+         - recognition rather than recall
+         - recognize/diagnose erros
+         - aesthetic and minimalist design
+     - *Usability studies*
+       - observe people using the system under normal circumstances
+       - methods
+         - surveys
+         - focus groups
+         - ethnography (field observation)
+         - observation in controlled setting
+     - *Metrics*
+       - measure quantitative aspects such as time to complete a task, error rate, memorability, etc.
+       - Task analysis
+         - *Hierarchical Task Analysis (HTA)*
+           - task is broken down into goals and subgoals
+         - *Cognitative Task Analysis (CTA)*
+           - also includes cognitative study (time spent thinking about what to do)
+     - *Human Reliability Assessment*
+       - error rate: how often does the user make a mistake
+       - cognitive load: how much can the user keep in his mind during a task?
+       - memorability: how much does the user remember?
+
+** DONE integration
+   - individual software modules are combined and *tested as a
+     group*. occurs after unit testing
+   - *Big-bang integration*
+     - write everything and hope
+     - all components are integrated simultaneously, after which
+       everything is tested as a whole
+   - *Top-down integration*
+     - testing conducted from main module to sub module. If the sub
+       module is not developed then it is replaced by a temporary
+       program called a stub
+   - *Bottom-up integration*
+     - lowest level components are tested first.
+     - they are then used to facilitate the testing of higher level
+       components
+** DONE test driven development and defensive programming
+   - *Test Driven Development*
+     - write test cases *first*
+     - then write minimum amount of code to pass the test
+     - finally refactor the code to acceptable standards
+   - *Defensive Programing*
+     - /McConnell, Code Complete, ch. 8/
+       - the recognition that programs will have problems and
+         modifications, and that a smart programmer will develop code
+         accordingly.
+       - Protecting program from *invalid inputs*
+       - *Error handling*
+         - Do nothing: garbage in, garbage out
+         - Notify the caller: garbage in, error out
+         - Shut it down: garbage in, nothing out
+       - *Assertions*
+         - code used during development that allows a program to check
+           itself as it runs
+         - use error-handling code for conditions you expect to occur,
+           use assertions for conditions that should never occur
+       - *Exceptions*
+         - a specific means by which code can pass along errors or
+           exceptional events to teh cade that called it
+         - try/catch in java
+    - /Hunt & Thomas, Pragmatic Programmer, ch. 4/
+      - *Design by Contract*
+        - documenting the rights and responsibilities of software
+          modules to ensure program correctness.
+        - *Preconditions*: a routines requirements
+        - *Postconditions*: what the routine is guaranteed to do; the
+          state of the world when the routine is done
+        - *Class invariants*: A class ensures that this condition is
+          always true from teh perspective of the caller.
+      - Implementing DBC
+        - Can partially emulate contracts with *assertions*, but
+          assertions don't propogate down an inheritance hierarchy.
+        - Some languages have built in support for DBC (like Eiffel)
+      - Use exceptions rarely, for unexpected events.
+** DONE analyzability (readability, understandability)
+   - *Readability*: eas with which reader can identify and
+     differentiate tokens and their syntactic meaning
+   - *Understandability*: ease with which reader can determine the
+     semantic meaning of a piece of code
+   - /Boswell, The Art of Readable Code, ch. 2-3/
+     - *Packing Information into Names*
+       - *choose specific words*. =Size()= vs =Height()=,
+         =NumNodes()=, =MemoryBytes()=
+       - *Avoid generic names* like =tmp= and =retval=* unless there
+         is a reason
+       - *Prefer concrete names over abstract names* -
+         =ServerCanStart()= vs =CanListenOnPort()=
+       - *Attaching extra information to a name*
+         - Values with units: =delay= vs =delay_secs=
+         - other examples
+           - =password= vs =plaintext_password=
+           - =html= vs =html_utf8=
+       - *Use longer names for larger scopes*
+       - *Use capitalization, underscores, etc. in a meaningful way*
+     - *The best names* are ones that can't be misconstrued 
+** DONE concurrency & synchronization
+   - Early computers could only run one program at a time
+   - *Multi-programming* operating systems (1970s) made it appear as
+     if multiple programs were running simultaneously
+   - *Instruction-Level Parallelism*
+     - rather than wait for an instruction to finish, start the next
+       one asap
+     - *pipelining*: fetch/decode one instruction while executing another
+   - *Thread-Level Parallelism*
+     - now we have threads, which allow programs to do more than one
+       thing at a time
+     - *In Java*
+       - each thread has it's own stack and program counter
+       - threads in the same process share a heap and static variables
+       - Defining and starting a Thread
+         #+BEGIN_SRC java
+            public class HelloRunnable implements Runnable {
+
+                public void run() {
+                    System.out.println("Hello from a thread!");
+                }
+
+                public static void main(String args[]) {
+                    (new Thread(new HelloRunnable())).start();
+                }
+            }
+          #+END_SRC
+       - Threads can make code slower... how?
+       - A *Race Condition* occurs when two or more threads can access
+         shared data and they try to change it at the same time.
+   - *Synchronization*
+     - *synchronized methods*
+       - in java use the =synchronized= keyword
+       - it is not possible for two invocations of synchronized methods
+         on the same object to interleave
+       - when a synchronized method exits, it establisheds a
+         happens-before relationship with any subsequent invocation of a
+         synchronized method for the same object. This guarantees that
+         the changes to the state of the object are visible to all
+         threads.
+     - *syncrhonized block*: you don't have to synchronize a whole method
+       #+BEGIN_SRC java
+       public void add(int value){
+
+           synchronized(this){
+               this.count += value;   
+           }
+       } 
+       #+END_SRC
+     - *Lock Objects* are a more sophisticated synchronization method
+       #+BEGIN_SRC java
+       public class Counter{
+
+           private Lock lock = new Lock();
+           private int count = 0;
+
+           public int inc(){
+               lock.lock();
+               int newCount = ++count;
+               lock.unlock();
+               return newCount;
+           }
+       }
+       #+END_SRC
+     - *Semaphores*
+       - A semaphore maintains a set of *permits*.
+       - the =acquire()= method blocks until a permit is available and
+         then takes it.
+       - the =release()= method adds a permit, potentially releasing a
+         blocking acquirer
+       - semaphores are often used to *restrict* the number of threads
+         that can access some resource
+** TODO efficiency and performance
+   - Tradeoffs of code optimization
+     - an optimized program can rely on using more elaborate
+       algorithms, and may be more difficult to comprehend than an
+       unoptimized
+   - Rules of thumb
+     - use the right algorithm or data structure
+     - Measure, don't guess
+     - don't unnecessarily create objects
+     - don't do unnecessary work
+   - Lazy evaluation and instantiation
+   - Making loops more efficient
+   - Memoization
+** TODO code smells and refactoring
+** TODO testing basics
+** TODO black-box testing
+** TODO white-box testing
+** TODO debugging
+
+* Reading assignments from 2nd half
+** Boswell, The Art of Readable Code, ch. 2-3
+** McConnell, Code Complete, ch. 8, 23, 25-26
+** Hunt & Thomas, Pragmatic Programmer, ch. 4
+** Fowler, Refactoring, ch. 2-3
+** Braude, Software Engineering, ch. 24 and 26
+** Ammann & Offutt, Software Testing, ch. 1
+** Jorgensen, Software Testing, ch. 5-6
