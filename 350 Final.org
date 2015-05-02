@@ -312,6 +312,127 @@
        - Replace floating-point numbers with ints
        - etc.
 ** TODO code smells and refactoring
+   - *Refactoring*
+     - a technique for cleaning up code in a more efficient and
+       controlled manner
+     - *Purposes*
+       - to improve the design of software
+       - to make software easier to understand
+       - to help find bugs
+       - to help you program faster
+     - *When to refactor*
+       - when you add function
+       - when you need to fix a bug
+       - as you do a code review
+   - *Code Smells*
+     - *Duplicated Code*
+       - /Extract Method, Extract Class/
+     - *Long Method*
+       - /Extract Method/
+     - *Large Class*
+       - /Extract Class, Extract Subclass/
+     - *Long Parameter List*
+       - /Replace Parameter with Method/
+         - when you can get the data in one parameter by making a
+           request of an object that you already know about.
+       - /Preserve Whole Object/
+         - to take a bunch of data gleaned form an object and replace
+           it with the object itself.
+       - /Introduce Parameter Object/
+         - to group several data items into a logical object
+     - *Divergent Change*
+       - when one class is commonly changed in different ways for
+         different reasons.
+       - "Well, I will have to change these methods every time I get a
+         new database..."
+       - Identify everything that changes for a particular case and
+         use /Extract Class/ to put them all together.
+     - *Shotgun Surgery*
+       - opposite of divergent change.
+       - when every time you make a kind of change, you have to make a
+         lot of little changes to a lot of different classes.
+       - Use /Move Method/ and /Move Field/ to put all of the changes
+         into a single class.
+       - Often you can use /Inline Class/ to bring a bunch of behavior
+         together
+       - This may result in Divergent Change
+     - *Feature Envy*
+       - a method that seems more interested in a class other than the
+         one it actually is in.
+       - use /Move Method/ to move the method to where it should be
+       - sometimes only part of the method suffers from envy, so use
+         /Extract Method/ then /Move Method/ to give it a better home.
+     - *Data Clumps*
+       - bunches of data that hang around together should be made into
+         their own object.
+       - use /Extract Class/ on the fields to turn these clumps into
+         classes.
+       - use /Introduce Parameter Object/ or /Preserve Whole Object/
+         to slim them down.
+     - *Primitive Obsession*
+       - using too many primitive types rather than records
+       - use /Replace Data Value with Object/
+     - *Switch Statements*
+       - consider polymorphism
+       - use /Extract Method/ to extract the switch statement and then
+         /Move Method/ to get it onto the class where the polymorphism
+         is needed.
+       - then either /Replace Type Code with Subclasses/ or /Replace
+         Type Code with State or Strategy/
+       - then /Replace Conditional with Polymorphism/
+     - *Parallel Inheritance Hierarchies*
+       - special case of shotgun surgery
+       - happens when every time you make a subclass of one class, you
+         have to make a subclass of another.
+       - use /Move Method/ and /Move Field/
+     - *Lazy Class*
+       - a class that isn't doing enough to pay for its existence
+         should be eliminated.
+       - use /Collapse Hierarchy/ or /Inline Class/
+     - *Speculative Generality*
+       - when speculative hooks and features are added that aren't
+         necessary yet.
+       - to get rid of abstract classes use /Collapse Hierarchy/
+       - unnescessary delegation can be removed with /Inline Class/
+       - Methods with unused params should be handled with /Remove
+         Parameter/
+       - Methods with odd abstract names should be handled with
+         /Rename Method/
+     - *Temporary Field*
+       - when an instance variable is set only in certain circumstances
+       - use /Extract Class/ to create a home for the orphan variables
+     - *Message Chains*
+       - when a client asks one object for another object, which the
+         client then asks for yet another object, etc.
+       - use /Hide Delegate/
+     - *Middle Man*
+       - when too many class methods are delegating tasks to another
+         class
+       - use /Remove Middle Man/
+     - *Inappropriate Intimacy*
+       - when classes delve into other classes private data
+       - use /Move Method/ and /Move Field/
+     - *Alternative Classes with Different Interfaces*
+       - use /Rename Method/ on any methods that do the same thing but
+         have different signatures for what they do.
+     - *Incomplete Library Class*
+       - use /Introduce Foreign Method/ to add methods you wish the
+         library class had
+       - use /Introduce Local Extension/ if there are many of these
+         methods.
+     - *Data Class*
+       - Classes that have fields, getters and setters, and nothing
+         else
+       - use /Encapsulate Field/
+     - *Refused Bequest*
+       - when subclasses don't need all/most of the methods and data of
+         their parents
+       - use /Push Down Method/ and /Push Down Field/ to push all the
+         unused methods to the sibling. 
+     - *Comments*
+       - when thick comments are an indicator of bad code
+       - when you need a comment to explain what a block of code does,
+         try /Extract Method/
 ** TODO testing basics
 ** TODO black-box testing
 ** TODO white-box testing
