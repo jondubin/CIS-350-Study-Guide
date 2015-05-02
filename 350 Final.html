@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>350 Final</title>
-<!-- 2015-05-01 Fri 14:37 -->
+<!-- 2015-05-02 Sat 15:57 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Reed Rosenbluth" />
@@ -235,7 +235,7 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3-3">3.3. <span class="done DONE">DONE</span> test driven development and defensive programming</a></li>
 <li><a href="#sec-3-4">3.4. <span class="done DONE">DONE</span> analyzability (readability, understandability)</a></li>
 <li><a href="#sec-3-5">3.5. <span class="done DONE">DONE</span> concurrency &amp; synchronization</a></li>
-<li><a href="#sec-3-6">3.6. <span class="todo TODO">TODO</span> efficiency and performance</a></li>
+<li><a href="#sec-3-6">3.6. <span class="done DONE">DONE</span> efficiency and performance</a></li>
 <li><a href="#sec-3-7">3.7. <span class="todo TODO">TODO</span> code smells and refactoring</a></li>
 <li><a href="#sec-3-8">3.8. <span class="todo TODO">TODO</span> testing basics</a></li>
 <li><a href="#sec-3-9">3.9. <span class="todo TODO">TODO</span> black-box testing</a></li>
@@ -757,18 +757,21 @@ that can access some resource
 </div>
 </div>
 <div id="outline-container-sec-3-6" class="outline-3">
-<h3 id="sec-3-6"><span class="section-number-3">3.6</span> <span class="todo TODO">TODO</span> efficiency and performance</h3>
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> <span class="done DONE">DONE</span> efficiency and performance</h3>
 <div class="outline-text-3" id="text-3-6">
 <ul class="org-ul">
-<li>Tradeoffs of code optimization
+<li><b>Tradeoffs</b> of code optimization
 <ul class="org-ul">
 <li>an optimized program can rely on using more elaborate
 algorithms, and may be more difficult to comprehend than an
 unoptimized
 </li>
+<li>focusing on optimization (prematurely) can detract from
+achieving other program objectives.
+</li>
 </ul>
 </li>
-<li>Rules of thumb
+<li><b>Rules of thumb</b>
 <ul class="org-ul">
 <li>use the right algorithm or data structure
 </li>
@@ -777,14 +780,152 @@ unoptimized
 <li>don't unnecessarily create objects
 </li>
 <li>don't do unnecessary work
+<ul class="org-ul">
+<li>for example, reducing the lines of code in a high-level
+language does not improve the speed or size of the resulting
+machine code
 </li>
 </ul>
 </li>
-<li>Lazy evaluation and instantiation
+</ul>
 </li>
-<li>Making loops more efficient
+<li><b>Common sources of inefficiency</b>
+<ul class="org-ul">
+<li><b>I/O operations</b>: in-memory data structures are much faster and
+should be used unless space is critical.
 </li>
-<li>Memoization
+<li><b>System Calls</b> are often expensive. 
+</li>
+</ul>
+</li>
+<li><b>Lazy evaluation and instantiation</b>
+<ul class="org-ul">
+<li>avoids doing work until the work is needed.
+</li>
+</ul>
+</li>
+<li><b>Loops</b>
+<ul class="org-ul">
+<li><b>Unswitching</b>
+<ul class="org-ul">
+<li>refers to making a decision inside a loop every time it's
+executed. If the decision doesn't change while the loop is
+executing, put it on the outside of the loop. This involves
+turning the loop inside out and putting loops inside the
+conditional rather than the conditional inside the loop.
+</li>
+</ul>
+</li>
+<li><b>Jamming</b>
+<ul class="org-ul">
+<li>the result of combining two loops that operate on the same
+set of elements.
+</li>
+</ul>
+</li>
+<li><b>Unrolling</b>
+<ul class="org-ul">
+<li>reduces the amount of loop housekeeping.
+</li>
+<li>to unroll a loop you handle two or more cases in each pass
+through the loop instead of just one.
+</li>
+<li>This hurts readability
+<div class="org-src-container">
+
+<pre class="src src-java">i = 0;
+while (i &lt; count - 1) {
+    a[i] = i;
+    a[i + 1] = i + 1;
+    i = i + 2
+}
+
+if (i == count - 1) {
+    a[count - 1] = count - 1;
+}
+</pre>
+</div>
+</li>
+<li>In this example the if statement picks up the case that might
+fall through the cracks if <code>count</code> is an odd number.
+</li>
+</ul>
+</li>
+<li><b>Minimizing the work inside of loops</b>
+<ul class="org-ul">
+<li>if you can evaluate statments outside of the loop so that
+only the result is used inside, do that.
+</li>
+</ul>
+</li>
+<li><b>Sentinel Values</b>
+<ul class="org-ul">
+<li>When you have a loop with a compound test, you can save time
+by simplifying the test.
+</li>
+<li>If the loop is a search loop you can use a sentinel value,
+which is a value that you put just past the end of the search
+range that's guaranteed to terminate the search.
+</li>
+</ul>
+</li>
+<li><b>Putting the busiest loop on the inside</b>
+</li>
+<li><b>Strength Reduction</b>
+<ul class="org-ul">
+<li>replacing expensive operations with cheaper operations
+</li>
+<li>ex. replace multiplication with addition.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Data Transformations</b>
+<ul class="org-ul">
+<li>Changes in data types can reduce program size and improve
+speed.
+</li>
+<li>Integers operations tend to be faster than floating points.
+</li>
+<li>Use the fewest array dimensions possible
+</li>
+<li>Minimize array references
+</li>
+<li>Use supplementary indexes
+<ul class="org-ul">
+<li>add related data that makes accessing a data type more
+efficient.
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Memoization</b>
+<ul class="org-ul">
+<li>a technique for storing values of a function instead of
+recomputing them each time the function is called.
+</li>
+</ul>
+</li>
+<li><b>Expressions</b>
+<ul class="org-ul">
+<li>algebraic identities can be used to replace costly operations
+with cheaper ones.
+<ul class="org-ul">
+<li>Replace multiplication with additions
+</li>
+<li>Replace exponentiation with multiplication
+</li>
+<li>Replace trig routines with trig identities
+</li>
+<li>Replace floating-point numbers with ints
+</li>
+<li>etc.
+</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 </div>
@@ -834,7 +975,7 @@ unoptimized
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Reed Rosenbluth</p>
-<p class="date">Created: 2015-05-01 Fri 14:37</p>
+<p class="date">Created: 2015-05-02 Sat 15:57</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

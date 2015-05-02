@@ -228,19 +228,89 @@
          blocking acquirer
        - semaphores are often used to *restrict* the number of threads
          that can access some resource
-** TODO efficiency and performance
-   - Tradeoffs of code optimization
+** DONE efficiency and performance
+   - *Tradeoffs* of code optimization
      - an optimized program can rely on using more elaborate
        algorithms, and may be more difficult to comprehend than an
        unoptimized
-   - Rules of thumb
+     - focusing on optimization (prematurely) can detract from
+       achieving other program objectives.
+   - *Rules of thumb*
      - use the right algorithm or data structure
      - Measure, don't guess
      - don't unnecessarily create objects
      - don't do unnecessary work
-   - Lazy evaluation and instantiation
-   - Making loops more efficient
-   - Memoization
+       - for example, reducing the lines of code in a high-level
+         language does not improve the speed or size of the resulting
+         machine code
+   - *Common sources of inefficiency*
+     - *I/O operations*: in-memory data structures are much faster and
+       should be used unless space is critical.
+     - *System Calls* are often expensive. 
+   - *Lazy evaluation and instantiation*
+     - avoids doing work until the work is needed.
+   - *Loops*
+     - *Unswitching*
+       - refers to making a decision inside a loop every time it's
+         executed. If the decision doesn't change while the loop is
+         executing, put it on the outside of the loop. This involves
+         turning the loop inside out and putting loops inside the
+         conditional rather than the conditional inside the loop.
+     - *Jamming*
+       - the result of combining two loops that operate on the same
+         set of elements.
+     - *Unrolling*
+       - reduces the amount of loop housekeeping.
+       - to unroll a loop you handle two or more cases in each pass
+         through the loop instead of just one.
+       - This hurts readability
+         #+BEGIN_SRC java
+         i = 0;
+         while (i < count - 1) {
+             a[i] = i;
+             a[i + 1] = i + 1;
+             i = i + 2
+         }
+
+         if (i == count - 1) {
+             a[count - 1] = count - 1;
+         }
+         #+END_SRC
+       - In this example the if statement picks up the case that might
+         fall through the cracks if =count= is an odd number.
+     - *Minimizing the work inside of loops*
+       - if you can evaluate statments outside of the loop so that
+         only the result is used inside, do that.
+     - *Sentinel Values*
+       - When you have a loop with a compound test, you can save time
+         by simplifying the test.
+       - If the loop is a search loop you can use a sentinel value,
+         which is a value that you put just past the end of the search
+         range that's guaranteed to terminate the search.
+     - *Putting the busiest loop on the inside*
+     - *Strength Reduction*
+       - replacing expensive operations with cheaper operations
+       - ex. replace multiplication with addition.
+   - *Data Transformations*
+     - Changes in data types can reduce program size and improve
+       speed.
+     - Integers operations tend to be faster than floating points.
+     - Use the fewest array dimensions possible
+     - Minimize array references
+     - Use supplementary indexes
+       - add related data that makes accessing a data type more
+         efficient.
+   - *Memoization*
+     - a technique for storing values of a function instead of
+       recomputing them each time the function is called.
+   - *Expressions*
+     - algebraic identities can be used to replace costly operations
+       with cheaper ones.
+       - Replace multiplication with additions
+       - Replace exponentiation with multiplication
+       - Replace trig routines with trig identities
+       - Replace floating-point numbers with ints
+       - etc.
 ** TODO code smells and refactoring
 ** TODO testing basics
 ** TODO black-box testing
