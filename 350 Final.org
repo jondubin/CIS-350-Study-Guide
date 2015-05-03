@@ -2,21 +2,20 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://thomasf.github.io/solarized-css/solarized-light.min.css" />
 
 * CIS 350 Final
-
 75 point exam. 120 minutes. Double sided study sheet
 
 * First Half (25%)
-** TODO software process models
-** TODO agile
-** TODO software configuration management
-** TODO requirements gathering and coumentation
-** TODO requirement analysis
-** TODO software architecture
-** TODO design concepts
-** TODO design patterns
+** TODO Software Process Models
+** TODO Agile
+** TODO Software Configuration Management
+** TODO Requirements Gathering and Coumentation
+** TODO Requirement Analysis
+** TODO Software Architecture
+** TODO Design Concepts
+** TODO Design Patterns
 
 * Second Half (75%)
-** DONE usability and UI
+** DONE Usability and UI
    - Why is usability important?
      - *Therac-25* case study
        - Radiation therapy machine involved in at least 6 accidents
@@ -81,8 +80,7 @@
        - error rate: how often does the user make a mistake
        - cognitive load: how much can the user keep in his mind during a task?
        - memorability: how much does the user remember?
-
-** DONE integration
+** DONE Integration
    - individual software modules are combined and *tested as a
      group*. occurs after unit testing
    - *Big-bang integration*
@@ -97,7 +95,7 @@
      - lowest level components are tested first.
      - they are then used to facilitate the testing of higher level
        components
-** DONE test driven development and defensive programming
+** DONE Test Driven Development and Defensive Drogramming
    - *Test Driven Development*
      - write test cases *first*
      - then write minimum amount of code to pass the test
@@ -135,7 +133,7 @@
           assertions don't propogate down an inheritance hierarchy.
         - Some languages have built in support for DBC (like Eiffel)
       - Use exceptions rarely, for unexpected events.
-** DONE analyzability (readability, understandability)
+** DONE Analyzability (readability, understandability)
    - *Readability*: eas with which reader can identify and
      differentiate tokens and their syntactic meaning
    - *Understandability*: ease with which reader can determine the
@@ -156,7 +154,7 @@
        - *Use longer names for larger scopes*
        - *Use capitalization, underscores, etc. in a meaningful way*
      - *The best names* are ones that can't be misconstrued 
-** DONE concurrency & synchronization
+** DONE Concurrency & Synchronization
    - Early computers could only run one program at a time
    - *Multi-programming* operating systems (1970s) made it appear as
      if multiple programs were running simultaneously
@@ -228,7 +226,7 @@
          blocking acquirer
        - semaphores are often used to *restrict* the number of threads
          that can access some resource
-** DONE efficiency and performance
+** DONE Efficiency and Performance
    - *Tradeoffs* of code optimization
      - an optimized program can rely on using more elaborate
        algorithms, and may be more difficult to comprehend than an
@@ -311,7 +309,7 @@
        - Replace trig routines with trig identities
        - Replace floating-point numbers with ints
        - etc.
-** DONE code smells and refactoring
+** DONE Code Smells and Refactoring
    - *Refactoring*
      - a technique for cleaning up code in a more efficient and
        controlled manner
@@ -433,7 +431,7 @@
        - when thick comments are an indicator of bad code
        - when you need a comment to explain what a block of code does,
          try /Extract Method/
-** DONE testing basics
+** DONE Testing Basics
    - Executing a program in an attempt to determine whether it behaves
      as expected
    - Goal is to find bugs, /not/ prove correctness
@@ -460,15 +458,32 @@
          much of the /code/ as possible.
      - *Fault-based*: show that program does not exhibit certain types
        of faults
-** TODO black-box testing
-** TODO white-box testing
-** TODO debugging
-
-* Reading assignments from 2nd half
-** Boswell, The Art of Readable Code, ch. 2-3
-** McConnell, Code Complete, ch. 8, 23, 25-26
-** Hunt & Thomas, Pragmatic Programmer, ch. 4
-** Fowler, Refactoring, ch. 2-3
-** Braude, Software Engineering, ch. 24 and 26
-** Ammann & Offutt, Software Testing, ch. 1
-** Jorgensen, Software Testing, ch. 5-6
+** TODO Black-Box Testing
+   - *Criteria*: how much of the *specification* is covered
+   - *Assumptions*
+     1. if a failure is revealed for a given value of input variable
+        =v=, then it is likely to be revealed for similar values of
+        =v=
+        - as a result of this assumption, we can split up the
+          specification space into *equivalence classes*
+     2. if a failure is revealed for a given value of input variable
+        =v=, then it is likely to be revealed regardless of the value
+        of other variables (single fault assumption)
+** TODO White-Box Testing
+   - /"Treat the code as a graph and try to cover it"/
+   - tests internal structures of an applications as opposed to its
+     functionality
+   - *Control flow graph*: representation, using grpah notation, of
+     all paths that might be traversed through a program during its
+     execution.
+   - *Coverage metrics*
+     - *Statement*: a measure of the percentage of statements that
+       have been executed by test cases.
+     - *Branch*: a measure of the percentage of the decisions points
+       (boolean expressions) of the program that have been evaluated
+       as both true and false in test cases.
+     - *Path*: a measure of the percentage of control paths taken.
+       - path coverage subsumes statement and branch coverage. if
+         you've covered 100% of the paths, you've covered 100% of the
+         statements and branches.
+** TODO Debugging
