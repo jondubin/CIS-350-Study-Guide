@@ -311,7 +311,7 @@
        - Replace trig routines with trig identities
        - Replace floating-point numbers with ints
        - etc.
-** TODO code smells and refactoring
+** DONE code smells and refactoring
    - *Refactoring*
      - a technique for cleaning up code in a more efficient and
        controlled manner
@@ -433,7 +433,33 @@
        - when thick comments are an indicator of bad code
        - when you need a comment to explain what a block of code does,
          try /Extract Method/
-** TODO testing basics
+** DONE testing basics
+   - Executing a program in an attempt to determine whether it behaves
+     as expected
+   - Goal is to find bugs, /not/ prove correctness
+   - *Failure*: when there is a difference between the actual output
+     and the expected output (as reported by the *test oracle*)
+   - *Error*: deviation in internal state (from correct state) that
+     led to failure
+   - *Fault*: static defect in code that led to error
+   - *Test Case Generation*
+     - *Exhaustive testing*: all possible inputs. generally not
+       feasible
+     - *Random testing*: choose inputs randomly
+       - easy to automate
+       - no indication of progress
+       - hard to know expected outputs
+     - *Coverage-based*: identify a quantifiable criteria and generate
+       tests that achieve adequate coverage level
+       - *Black-Box Testing*: try to find test cases that cover as
+         much of the /specification (I/O) space/ as possible
+         - equivalence classes
+         - robustness cases
+         - boundary conditions
+       - *White-Box Testing*: try to find test cases that cover as
+         much of the /code/ as possible.
+     - *Fault-based*: show that program does not exhibit certain types
+       of faults
 ** TODO black-box testing
 ** TODO white-box testing
 ** TODO debugging
