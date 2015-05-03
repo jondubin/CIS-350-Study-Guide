@@ -2,6 +2,6 @@
 
 Created with Emacs Org mode.
 
-In emacs, you can export the document as html or latex with `C-c C-e`
+In emacs, you can export the document as html (or latex pdf) with `C-c C-e`
 
-Beware: the .html and .tex files might be out of date.
+Beware: the .html file might be out of date.
