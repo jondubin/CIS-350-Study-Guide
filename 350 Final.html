@@ -4,10 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>350 Final</title>
-<!-- 2015-05-02 Sat 15:57 -->
+<!-- 2015-05-03 Sun 10:22 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Reed Rosenbluth" />
+<meta  name="author" content="Jonathan Dubin" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -628,7 +628,7 @@ is a reason
 </li>
 </ul>
 </li>
-<li><b>The best names</b> are ones that can't be misconstrued 
+<li><b>The best names</b> are ones that can't be misconstrued
 </li>
 </ul>
 </li>
@@ -712,7 +712,7 @@ threads.
 <pre class="src src-java">public void add(int value){
 
     synchronized(this){
-        this.count += value;   
+        this.count += value;
     }
 }
 </pre>
@@ -794,7 +794,7 @@ machine code
 <li><b>I/O operations</b>: in-memory data structures are much faster and
 should be used unless space is critical.
 </li>
-<li><b>System Calls</b> are often expensive. 
+<li><b>System Calls</b> are often expensive.
 </li>
 </ul>
 </li>
@@ -932,6 +932,279 @@ with cheaper ones.
 </div>
 <div id="outline-container-sec-3-7" class="outline-3">
 <h3 id="sec-3-7"><span class="section-number-3">3.7</span> <span class="todo TODO">TODO</span> code smells and refactoring</h3>
+<div class="outline-text-3" id="text-3-7">
+<ul class="org-ul">
+<li><b>Refactoring</b>
+<ul class="org-ul">
+<li>a technique for cleaning up code in a more efficient and
+controlled manner
+</li>
+<li><b>Purposes</b>
+<ul class="org-ul">
+<li>to improve the design of software
+</li>
+<li>to make software easier to understand
+</li>
+<li>to help find bugs
+</li>
+<li>to help you program faster
+</li>
+</ul>
+</li>
+<li><b>When to refactor</b>
+<ul class="org-ul">
+<li>when you add function
+</li>
+<li>when you need to fix a bug
+</li>
+<li>as you do a code review
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Code Smells</b>
+<ul class="org-ul">
+<li><b>Duplicated Code</b>
+<ul class="org-ul">
+<li><i>Extract Method, Extract Class</i>
+</li>
+</ul>
+</li>
+<li><b>Long Method</b>
+<ul class="org-ul">
+<li><i>Extract Method</i>
+</li>
+</ul>
+</li>
+<li><b>Large Class</b>
+<ul class="org-ul">
+<li><i>Extract Class, Extract Subclass</i>
+</li>
+</ul>
+</li>
+<li><b>Long Parameter List</b>
+<ul class="org-ul">
+<li><i>Replace Parameter with Method</i>
+<ul class="org-ul">
+<li>when you can get the data in one parameter by making a
+request of an object that you already know about.
+</li>
+</ul>
+</li>
+<li><i>Preserve Whole Object</i>
+<ul class="org-ul">
+<li>to take a bunch of data gleaned form an object and replace
+it with the object itself.
+</li>
+</ul>
+</li>
+<li><i>Introduce Parameter Object</i>
+<ul class="org-ul">
+<li>to group several data items into a logical object
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Divergent Change</b>
+<ul class="org-ul">
+<li>when one class is commonly changed in different ways for
+different reasons.
+</li>
+<li>"Well, I will have to change these methods every time I get a
+new database&#x2026;"
+</li>
+<li>Identify everything that changes for a particular case and
+use <i>Extract Class</i> to put them all together.
+</li>
+</ul>
+</li>
+<li><b>Shotgun Surgery</b>
+<ul class="org-ul">
+<li>opposite of divergent change.
+</li>
+<li>when every time you make a kind of change, you have to make a
+lot of little changes to a lot of different classes.
+</li>
+<li>Use <i>Move Method</i> and <i>Move Field</i> to put all of the changes
+into a single class.
+</li>
+<li>Often you can use <i>Inline Class</i> to bring a bunch of behavior
+together
+</li>
+<li>This may result in Divergent Change
+</li>
+</ul>
+</li>
+<li><b>Feature Envy</b>
+<ul class="org-ul">
+<li>a method that seems more interested in a class other than the
+one it actually is in.
+</li>
+<li>use <i>Move Method</i> to move the method to where it should be
+</li>
+<li>sometimes only part of the method suffers from envy, so use
+<i>Extract Method</i> then <i>Move Method</i> to give it a better home.
+</li>
+</ul>
+</li>
+<li><b>Data Clumps</b>
+<ul class="org-ul">
+<li>bunches of data that hang around together should be made into
+their own object.
+</li>
+<li>use <i>Extract Class</i> on the fields to turn these clumps into
+classes.
+</li>
+<li>use <i>Introduce Parameter Object</i> or <i>Preserve Whole Object</i>
+         to slim them down.
+</li>
+</ul>
+</li>
+<li><b>Primitive Obsession</b>
+<ul class="org-ul">
+<li>using too many primitive types rather than records
+</li>
+<li>use <i>Replace Data Value with Object</i>
+</li>
+</ul>
+</li>
+<li><b>Switch Statements</b>
+<ul class="org-ul">
+<li>consider polymorphism
+</li>
+<li>use <i>Extract Method</i> to extract the switch statement and then
+<i>Move Method</i> to get it onto the class where the polymorphism
+is needed.
+</li>
+<li>then either <i>Replace Type Code with Subclasses</i> or <i>Replace
+Type Code with State or Strategy</i>
+</li>
+<li>then <i>Replace Conditional with Polymorphism</i>
+</li>
+</ul>
+</li>
+<li><b>Parallel Inheritance Hierarchies</b>
+<ul class="org-ul">
+<li>special case of shotgun surgery
+</li>
+<li>happens when every time you make a subclass of one class, you
+have to make a subclass of another.
+</li>
+<li>use <i>Move Method</i> and <i>Move Field</i>
+</li>
+</ul>
+</li>
+<li><b>Lazy Class</b>
+<ul class="org-ul">
+<li>a class that isn't doing enough to pay for its existence
+should be eliminated.
+</li>
+<li>use <i>Collapse Hierarchy</i> or <i>Inline Class</i>
+</li>
+</ul>
+</li>
+<li><b>Speculative Generality</b>
+<ul class="org-ul">
+<li>when speculative hooks and features are added that aren't
+necessary yet.
+</li>
+<li>to get rid of abstract classes use <i>Collapse Hierarchy</i>
+</li>
+<li>unnescessary delegation can be removed with <i>Inline Class</i>
+</li>
+<li>Methods with unused params should be handled with <i>Remove
+Parameter</i>
+</li>
+<li>Methods with odd abstract names should be handled with
+<i>Rename Method</i>
+</li>
+</ul>
+</li>
+<li><b>Temporary Field</b>
+<ul class="org-ul">
+<li>when an instance variable is set only in certain circumstances
+</li>
+<li>use <i>Extract Class</i> to create a home for the orphan variables
+</li>
+</ul>
+</li>
+<li><b>Message Chains</b>
+<ul class="org-ul">
+<li>when a client asks one object for another object, which the
+client then asks for yet another object, etc.
+</li>
+<li>use <i>Hide Delegate</i>
+</li>
+</ul>
+</li>
+<li><b>Middle Man</b>
+<ul class="org-ul">
+<li>when too many class methods are delegating tasks to another
+class
+</li>
+<li>use <i>Remove Middle Man</i>
+</li>
+</ul>
+</li>
+<li><b>Inappropriate Intimacy</b>
+<ul class="org-ul">
+<li>when classes delve into other classes private data
+</li>
+<li>use <i>Move Method</i> and <i>Move Field</i>
+</li>
+</ul>
+</li>
+<li><b>Alternative Classes with Different Interfaces</b>
+<ul class="org-ul">
+<li>use <i>Rename Method</i> on any methods that do the same thing but
+have different signatures for what they do.
+</li>
+</ul>
+</li>
+<li><b>Incomplete Library Class</b>
+<ul class="org-ul">
+<li>use <i>Introduce Foreign Method</i> to add methods you wish the
+library class had
+</li>
+<li>use <i>Introduce Local Extension</i> if there are many of these
+methods.
+</li>
+</ul>
+</li>
+<li><b>Data Class</b>
+<ul class="org-ul">
+<li>Classes that have fields, getters and setters, and nothing
+else
+</li>
+<li>use <i>Encapsulate Field</i>
+</li>
+</ul>
+</li>
+<li><b>Refused Bequest</b>
+<ul class="org-ul">
+<li>when subclasses don't need all/most of the methods and data of
+their parents
+</li>
+<li>use <i>Push Down Method</i> and <i>Push Down Field</i> to push all the
+unused methods to the sibling.
+</li>
+</ul>
+</li>
+<li><b>Comments</b>
+<ul class="org-ul">
+<li>when thick comments are an indicator of bad code
+</li>
+<li>when you need a comment to explain what a block of code does,
+try <i>Extract Method</i>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="outline-container-sec-3-8" class="outline-3">
 <h3 id="sec-3-8"><span class="section-number-3">3.8</span> <span class="todo TODO">TODO</span> testing basics</h3>
@@ -974,9 +1247,9 @@ with cheaper ones.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Reed Rosenbluth</p>
-<p class="date">Created: 2015-05-02 Sat 15:57</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="author">Author: Jonathan Dubin</p>
+<p class="date">Created: 2015-05-03 Sun 10:22</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

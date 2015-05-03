@@ -155,7 +155,7 @@
            - =html= vs =html_utf8=
        - *Use longer names for larger scopes*
        - *Use capitalization, underscores, etc. in a meaningful way*
-     - *The best names* are ones that can't be misconstrued 
+     - *The best names* are ones that can't be misconstrued
 ** DONE concurrency & synchronization
    - Early computers could only run one program at a time
    - *Multi-programming* operating systems (1970s) made it appear as
@@ -201,9 +201,9 @@
        public void add(int value){
 
            synchronized(this){
-               this.count += value;   
+               this.count += value;
            }
-       } 
+       }
        #+END_SRC
      - *Lock Objects* are a more sophisticated synchronization method
        #+BEGIN_SRC java
@@ -246,7 +246,7 @@
    - *Common sources of inefficiency*
      - *I/O operations*: in-memory data structures are much faster and
        should be used unless space is critical.
-     - *System Calls* are often expensive. 
+     - *System Calls* are often expensive.
    - *Lazy evaluation and instantiation*
      - avoids doing work until the work is needed.
    - *Loops*
@@ -428,7 +428,7 @@
        - when subclasses don't need all/most of the methods and data of
          their parents
        - use /Push Down Method/ and /Push Down Field/ to push all the
-         unused methods to the sibling. 
+         unused methods to the sibling.
      - *Comments*
        - when thick comments are an indicator of bad code
        - when you need a comment to explain what a block of code does,
