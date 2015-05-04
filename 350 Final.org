@@ -108,7 +108,8 @@
          modifications, and that a smart programmer will develop code
          accordingly.
        - Protecting program from *invalid inputs*
-       - *Error handling*
+       - Protect against mistakes programmer mistakes
+       - *Error handling* - what happens if you get bad input?
          - Do nothing: garbage in, garbage out
          - Notify the caller: garbage in, error out
          - Shut it down: garbage in, nothing out
@@ -121,25 +122,28 @@
          - a specific means by which code can pass along errors or
            exceptional events to teh cade that called it
          - try/catch in java
-    - /Hunt & Thomas, Pragmatic Programmer, ch. 4/
-      - *Design by Contract*
-        - documenting the rights and responsibilities of software
-          modules to ensure program correctness.
-        - *Preconditions*: a routines requirements
-        - *Postconditions*: what the routine is guaranteed to do; the
-          state of the world when the routine is done
-        - *Class invariants*: A class ensures that this condition is
-          always true from teh perspective of the caller.
-      - Implementing DBC
-        - Can partially emulate contracts with *assertions*, but
-          assertions don't propogate down an inheritance hierarchy.
-        - Some languages have built in support for DBC (like Eiffel)
-      - Use exceptions rarely, for unexpected events.
+         - [ ] Error codes vs exceptions vs assertions?
+   - /Hunt & Thomas, Pragmatic Programmer, ch. 4/
+     - *Design by Contract*
+       - documenting the rights and responsibilities of software
+         modules to ensure program correctness.
+       - *Preconditions*: a routines requirements
+       - *Postconditions*: what the routine is guaranteed to do; the
+         state of the world when the routine is done
+       - *Class invariants*: A class ensures that this condition is
+         always true from teh perspective of the caller.
+     - Implementing DBC
+       - Can partially emulate contracts with *assertions*, but
+         assertions don't propogate down an inheritance hierarchy.
+       - Some languages have built in support for DBC (like Eiffel)
+     - Use exceptions rarely, for unexpected events.
 ** DONE analyzability (readability, understandability)
-   - *Readability*: eas with which reader can identify and
+   - *Readability*: ease with which reader can identify and
      differentiate tokens and their syntactic meaning
    - *Understandability*: ease with which reader can determine the
      semantic meaning of a piece of code
+   - Affected by: whitespace, punctuation, coding covnentions,
+     variable names, number of paths, decision points
    - /Boswell, The Art of Readable Code, ch. 2-3/
      - *Packing Information into Names*
        - *choose specific words*. =Size()= vs =Height()=,
@@ -183,10 +187,10 @@
                 }
             }
           #+END_SRC
-       - Threads can make code slower... how?
+       - [ ] Threads can make code slower... how?
        - A *Race Condition* occurs when two or more threads can access
          shared data and they try to change it at the same time.
-   - *Synchronization*
+   - *Synchronization techniques*
      - *synchronized methods*
        - in java use the =synchronized= keyword
        - it is not possible for two invocations of synchronized methods
@@ -446,3 +450,20 @@
 ** Braude, Software Engineering, ch. 24 and 26
 ** Ammann & Offutt, Software Testing, ch. 1
 ** Jorgensen, Software Testing, ch. 5-6
+
+
+* Exam format
+  - Answer multiple choice questions
+  - Answer problem solving questions
+  - Write and modify java code
+    - Refactor
+    - Defensive programming
+    - Threads
+
+* Preparing for the exam
+** TODO Look at practice questions and solutions
+** TODO Review midterm solutions
+** TODO Review lecture notes
+** TODO Reading assignments
+** TODO Create study sheet
+** TODO Look at Piazza
