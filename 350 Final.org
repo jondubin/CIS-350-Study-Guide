@@ -10,7 +10,7 @@
 ** TODO Software Process Models
 ** TODO Agile
 ** TODO Software Configuration Management
-** TODO Requirements Gathering and Doumentation
+** TODO Requirements Gathering and Documentation
 ** TODO Requirement Analysis
 ** TODO Software Architecture
 ** TODO Design Concepts
@@ -550,3 +550,4 @@
      - testing that is done after changes are made to the software.
      - helps ensure that the updated software still possesses the
        functionality it had before the updates.
+       
