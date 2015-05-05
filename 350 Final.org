@@ -1,22 +1,22 @@
 #+INFOJS_OPT: view:t toc:t ltoc:t mouse:underline buttons:0 path:http://thomasf.github.io/solarized-css/org-info.min.js
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://thomasf.github.io/solarized-css/solarized-light.min.css" />
+#+TAGS: @reading
 
 * CIS 350 Final
-
 75 point exam. 120 minutes. Double sided study sheet
 
 * First Half (25%)
-** TODO software process models
-** TODO agile
-** TODO software configuration management
-** TODO requirements gathering and coumentation
-** TODO requirement analysis
-** TODO software architecture
-** TODO design concepts
-** TODO design patterns
+** TODO Software Process Models
+** TODO Agile
+** TODO Software Configuration Management
+** TODO Requirements Gathering and Coumentation
+** TODO Requirement Analysis
+** TODO Software Architecture
+** TODO Design Concepts
+** TODO Design Patterns
 
 * Second Half (75%)
-** DONE usability and UI
+** DONE Usability and UI
    - Why is usability important?
      - *Therac-25* case study
        - Radiation therapy machine involved in at least 6 accidents
@@ -26,7 +26,7 @@
        - Software from the older version (Therac-20) was reused and
          was assumed to be workign correctly
        - *Hamilton, Ontario, July 1985*
-         - During treatment, machine stopped and reported "no does"
+         - During treatment, machine stopped and reported "no dose"
          - This was a common occurence, so the technician pressed "P"
            to proceed and re-deliver the dose
          - This happened four more times, after which the machine went
@@ -47,8 +47,22 @@
      - Error Tolerant
      - Easy to learn
    - User-centered design
+     - Persona
+       - Who are the users?
+       - What do they know
+       - What is their motiviation?
+     - Scenario
+       - What do they want to do?
+       - What else are they doing?
+       - What are their expectations?
      - needs, wants, and limitations of end users are given extensive attention
    - Information visualization and metaphors
+     - How information is represented
+     - Comp sci + cog psychology
+     - Human processor model: perception pipeline
+     - Metaphor: agreed upon constructs that related to important and
+       significance
+       - Indicates which data is more important and guide user's attentuon
    - Measuring usability: studies, heuristics, metrics
      - *Heuristics*
        - general guidelines or widely accepted "best practices"
@@ -66,23 +80,34 @@
      - *Usability studies*
        - observe people using the system under normal circumstances
        - methods
-         - surveys
-         - focus groups
-         - ethnography (field observation)
-         - observation in controlled setting
+         - surveys: many saying
+         - focus groups: few saying
+         - ethnography (field observation): many doing
+         - observation in controlled setting: few doing
      - *Metrics*
-       - measure quantitative aspects such as time to complete a task, error rate, memorability, etc.
-       - Task analysis
+       - measure quantitative aspects such as time to complete a task,
+         error rate, memorability, etc.
+       - Nielsen's usability heuristics:
+         - Match between system and real world
+         - Consistency and standards
+         - Help and documentation
+         - User control and freedom
+         - Visibility of system status
+         - Flexibiltiy and efficiency
+         - Error prevention
+         - Recognition rather than recall
+         - Recognize/diagnose errors
+         - Aesthetic and minimalist design
+       - Task analysis - how easy is it to accomplish something?
          - *Hierarchical Task Analysis (HTA)*
            - task is broken down into goals and subgoals
          - *Cognitative Task Analysis (CTA)*
            - also includes cognitative study (time spent thinking about what to do)
-     - *Human Reliability Assessment*
+     - *Human Reliability Assessment* (HRA)
        - error rate: how often does the user make a mistake
        - cognitive load: how much can the user keep in his mind during a task?
        - memorability: how much does the user remember?
-
-** DONE integration
+** DONE Integration
    - individual software modules are combined and *tested as a
      group*. occurs after unit testing
    - *Big-bang integration*
@@ -97,13 +122,13 @@
      - lowest level components are tested first.
      - they are then used to facilitate the testing of higher level
        components
-** DONE test driven development and defensive programming
+** DONE Test Driven Development and Defensive Drogramming
    - *Test Driven Development*
      - write test cases *first*
      - then write minimum amount of code to pass the test
      - finally refactor the code to acceptable standards
    - *Defensive Programing*
-     - /McConnell, Code Complete, ch. 8/
+     - /McConnell, Code Complete, ch. 8/ :reading:
        - the recognition that programs will have problems and
          modifications, and that a smart programmer will develop code
          accordingly.
@@ -122,8 +147,8 @@
          - a specific means by which code can pass along errors or
            exceptional events to teh cade that called it
          - try/catch in java
-         - [ ] Error codes vs exceptions vs assertions?
-   - /Hunt & Thomas, Pragmatic Programmer, ch. 4/
+       - [ ] Error code vs assertions vs exceptions
+   - /Hunt & Thomas, Pragmatic Programmer, ch. 4/ :reading:
      - *Design by Contract*
        - documenting the rights and responsibilities of software
          modules to ensure program correctness.
@@ -137,7 +162,7 @@
          assertions don't propogate down an inheritance hierarchy.
        - Some languages have built in support for DBC (like Eiffel)
      - Use exceptions rarely, for unexpected events.
-** DONE analyzability (readability, understandability)
+** DONE Analyzability (readability, understandability)
    - *Readability*: ease with which reader can identify and
      differentiate tokens and their syntactic meaning
    - *Understandability*: ease with which reader can determine the
@@ -160,10 +185,13 @@
        - *Use longer names for larger scopes*
        - *Use capitalization, underscores, etc. in a meaningful way*
      - *The best names* are ones that can't be misconstrued
-** DONE concurrency & synchronization
+** DONE Concurrency & Synchronization
    - Early computers could only run one program at a time
-   - *Multi-programming* operating systems (1970s) made it appear as
-     if multiple programs were running simultaneously
+   - How do we continue increasing speed if Moore's law slows down?
+   - *Process-level Parallelism*
+     - Early computers ran one program at a time
+     - *Multi-programming* operating systems (1970s) made it appear as
+       if multiple programs were running simultaneously
    - *Instruction-Level Parallelism*
      - rather than wait for an instruction to finish, start the next
        one asap
@@ -172,8 +200,10 @@
      - now we have threads, which allow programs to do more than one
        thing at a time
      - *In Java*
-       - each thread has it's own stack and program counter
-       - threads in the same process share a heap and static variables
+       - each thread has it's own stack (local vars, method args) and
+         program counter
+       - threads in the same process share a heap (object storage) and
+         static variables
        - Defining and starting a Thread
          #+BEGIN_SRC java
             public class HelloRunnable implements Runnable {
@@ -232,7 +262,7 @@
          blocking acquirer
        - semaphores are often used to *restrict* the number of threads
          that can access some resource
-** DONE efficiency and performance
+** DONE Efficiency and Performance
    - *Tradeoffs* of code optimization
      - an optimized program can rely on using more elaborate
        algorithms, and may be more difficult to comprehend than an
@@ -267,7 +297,7 @@
        - reduces the amount of loop housekeeping.
        - to unroll a loop you handle two or more cases in each pass
          through the loop instead of just one.
-       - This hurts readability
+       - This hurts readability in the source code
          #+BEGIN_SRC java
          i = 0;
          while (i < count - 1) {
@@ -280,6 +310,7 @@
              a[count - 1] = count - 1;
          }
          #+END_SRC
+       - Increases size of te compiled code
        - In this example the if statement picks up the case that might
          fall through the cracks if =count= is an odd number.
      - *Minimizing the work inside of loops*
@@ -315,7 +346,7 @@
        - Replace trig routines with trig identities
        - Replace floating-point numbers with ints
        - etc.
-** TODO code smells and refactoring
+** DONE Code Smells and Refactoring
    - *Refactoring*
      - a technique for cleaning up code in a more efficient and
        controlled manner
@@ -431,26 +462,88 @@
      - *Refused Bequest*
        - when subclasses don't need all/most of the methods and data of
          their parents
+       - (also consider the pull up method for the opposite problem,
+         to move code into the superclass)
        - use /Push Down Method/ and /Push Down Field/ to push all the
          unused methods to the sibling.
      - *Comments*
        - when thick comments are an indicator of bad code
        - when you need a comment to explain what a block of code does,
          try /Extract Method/
-** TODO testing basics
-** TODO black-box testing
-** TODO white-box testing
-** TODO debugging
+** DONE Testing Basics
+   - Executing a program in an attempt to determine whether it behaves
+     as expected
+   - Goal is to find bugs, /not/ prove correctness
+   - *Failure*: when there is a difference between the actual output
+     and the expected output (as reported by the *test oracle*)
+   - *Error*: deviation in internal state (from correct state) that
+     led to failure
+   - *Fault*: static defect in code that led to error
+   - *Test Case Generation*
+     - *Exhaustive testing*: all possible inputs. generally not
+       feasible
+     - *Random testing*: choose inputs randomly
+       - easy to automate
+       - no indication of progress
+       - hard to know expected outputs
+     - *Coverage-based*: identify a quantifiable criteria and generate
+       tests that achieve adequate coverage level
+       - *Black-Box Testing*: try to find test cases that cover as
+         much of the /specification (I/O) space/ as possible
+         - equivalence classes
+         - robustness cases
+         - boundary conditions
+       - *White-Box Testing*: try to find test cases that cover as
+         much of the /code/ as possible.
+     - *Fault-based*: show that program does not exhibit certain types
+       of faults
+** TODO Black-Box Testing
+   - *Criteria*: how much of the *specification* is covered
+   - *Assumptions*
+     1. if a failure is revealed for a given value of input variable
+        =v=, then it is likely to be revealed for similar values of
+        =v=
+        - as a result of this assumption, we can split up the
+          specification space into *equivalence classes*
+     2. if a failure is revealed for a given value of input variable
+        =v=, then it is likely to be revealed regardless of the value
+        of other variables (single fault assumption)
+   - Boundary value: for each variable, hold others at a normal value,
+     and test min, min+, max, max-, norm
+     - To test robustness, add min- and max+
+   - Worst case testing: like boundary, but without single fault
+     assumption; test boundaries simultaneously
+   - Weak-normal: single fault, n = classes in partition with largest number of subsets
+     - Weak robust: test weak-normal, and one invalid for each var
+   - Strong normal: multiple fault, cartesian product
+     - Strong robust: test invalid in addition to above
 
-* Reading assignments from 2nd half
-** Boswell, The Art of Readable Code, ch. 2-3
-** McConnell, Code Complete, ch. 8, 23, 25-26
-** Hunt & Thomas, Pragmatic Programmer, ch. 4
-** Fowler, Refactoring, ch. 2-3
-** Braude, Software Engineering, ch. 24 and 26
-** Ammann & Offutt, Software Testing, ch. 1
-** Jorgensen, Software Testing, ch. 5-6
-
+** TODO White-Box Testing
+   - /"Treat the code as a graph and try to cover it"/
+   - tests internal structures of an applications as opposed to its
+     functionality
+   - *Control flow graph*: representation, using grpah notation, of
+     all paths that might be traversed through a program during its
+     execution.
+   - *Coverage metrics*
+     - *Statement*: a measure of the percentage of statements that
+       have been executed by test cases. Every statement executed at
+       least once
+     - *Branch*: a measure of the percentage of the decisions points
+       (boolean expressions) of the program that have been evaluated
+       as both true and false in test cases. Every branch executed at
+       least once
+     - *Path*: a measure of the percentage of control paths taken.
+       - path coverage subsumes statement and branch coverage. if
+         you've covered 100% of the paths, you've covered 100% of the
+         statements and branches. Every path executed at least once
+** TODO Debugging
+   - Levels of fault localization: deduction, observation, induction, experimentation
+   - Fault localization using scientific method: gather evidence, form
+     hypothesis, try to disprove hypothesis, repeat
+   - Black-box debugging: based on equivalence classes
+   - White-box debugging: based on code covearge (slicing and dicing)
+   - Regression testing
 
 * Exam format
   - Answer multiple choice questions
@@ -466,4 +559,34 @@
 ** TODO Review lecture notes
 ** TODO Reading assignments
 ** TODO Create study sheet
-** TODO Look at Piazza
+** DONE Look at Piazza
+   CLOSED: [2015-05-05 Tue 00:24]
+** TODO Look at last semester's cheat sheet
+** DONE draw and interpret control graphs
+   CLOSED: [2015-05-05 Tue 00:25]
+* To include on cheat sheet
+** TODO Second semester material
+   - List of code smells and refactoring testability
+** TODO Material from first semester
+   - Process models and their steps
+     - RUP: inception, elaboration, construction, transition
+   - Requirements
+     - Functional
+     - Non-functional
+   - Software engineering definitions
+     - Software engineering: a disciplined, systematic, quantifiable,
+       approach to developing software
+   - Essential and accidental difficulties
+     - Essential: changeability, complexity, conformity, invisibility
+   - Quality (ISO 9126)
+     - Internal (maintainability): analyzability, changeability, stability, testability
+       (reusability)
+     - External: functionality, reliability, efficiency, usability, portability
+   - Relationships: association, composition, aggregation, dependency, realization, generalization
+   - Design patterns and descriptions
+     - Decorator
+     - Bridge
+     - Observer
+     - Factory method
+     - Singleton
+     - Strategy
