@@ -10,7 +10,7 @@
 ** TODO Software Process Models
 ** TODO Agile
 ** TODO Software Configuration Management
-** TODO Requirements Gathering and Coumentation
+** TODO Requirements Gathering and Doumentation
 ** TODO Requirement Analysis
 ** TODO Software Architecture
 ** TODO Design Concepts
@@ -34,7 +34,7 @@
            into suspend mode
          - Patient received 5x dose and died four months later
        - In Tyler Texas (1986) a technician reported "Malfunction 54"
-         which did not exist in the user manuel
+         which did not exist in the user manual
          - the operator had requested 202 units, but only 6 were
            delivered and the patient died five months later
          - the manufacturer could not reproduce this bug so the
@@ -76,8 +76,8 @@
        - Task analysis
          - *Hierarchical Task Analysis (HTA)*
            - task is broken down into goals and subgoals
-         - *Cognitative Task Analysis (CTA)*
-           - also includes cognitative study (time spent thinking about what to do)
+         - *Cognitive Task Analysis (CTA)*
+           - also includes cognitive study (time spent thinking about what to do)
      - *Human Reliability Assessment*
        - error rate: how often does the user make a mistake
        - cognitive load: how much can the user keep in his mind during a task?
@@ -97,7 +97,7 @@
      - lowest level components are tested first.
      - they are then used to facilitate the testing of higher level
        components
-** DONE Test Driven Development and Defensive Drogramming
+** DONE Test Driven Development and Defensive Programming
    - *Test Driven Development*
      - write test cases *first*
      - then write minimum amount of code to pass the test
@@ -132,11 +132,11 @@
           always true from the perspective of the caller.
       - Implementing DBC
         - Can partially emulate contracts with *assertions*, but
-          assertions don't propogate down an inheritance hierarchy.
+          assertions don't propagate down an inheritance hierarchy.
         - Some languages have built in support for DBC (like Eiffel)
       - Use exceptions rarely, for unexpected events.
 ** DONE Analyzability (readability, understandability)
-   - *Readability*: eas with which reader can identify and
+   - *Readability*: ease with which reader can identify and
      differentiate tokens and their syntactic meaning
    - *Understandability*: ease with which reader can determine the
      semantic meaning of a piece of code
@@ -190,7 +190,7 @@
        - in java use the =synchronized= keyword
        - it is not possible for two invocations of synchronized methods
          on the same object to interleave
-       - when a synchronized method exits, it establisheds a
+       - when a synchronized method exits, it establishes a
          happens-before relationship with any subsequent invocation of a
          synchronized method for the same object. This guarantees that
          the changes to the state of the object are visible to all
@@ -278,7 +278,7 @@
        - In this example the if statement picks up the case that might
          fall through the cracks if =count= is an odd number.
      - *Minimizing the work inside of loops*
-       - if you can evaluate statments outside of the loop so that
+       - if you can evaluate statements outside of the loop so that
          only the result is used inside, do that.
      - *Sentinel Values*
        - When you have a loop with a compound test, you can save time
@@ -392,7 +392,7 @@
        - when speculative hooks and features are added that aren't
          necessary yet.
        - to get rid of abstract classes use /Collapse Hierarchy/
-       - unnescessary delegation can be removed with /Inline Class/
+       - unnecessary delegation can be removed with /Inline Class/
        - Methods with unused params should be handled with /Remove
          Parameter/
        - Methods with odd abstract names should be handled with
@@ -520,7 +520,7 @@
    - /"Treat the code as a graph and try to cover it"/
    - tests internal structures of an applications as opposed to its
      functionality
-   - *Control flow graph*: representation, using grpah notation, of
+   - *Control flow graph*: representation, using graph notation, of
      all paths that might be traversed through a program during its
      execution.
    - *Coverage metrics*
