@@ -604,28 +604,24 @@
      hypothesis, try to disprove hypothesis, repeat
 
 
-* Exam format
-  - Answer multiple choice questions
-  - Answer problem solving questions
-  - Write and modify java code
-    - Refactor
-    - Defensive programming
-    - Threads
-
 * Preparing for the exam
-** TODO Look at practice questions and solutions
-** TODO Review midterm solutions
-** TODO Review lecture notes
-** TODO Reading assignments
-** TODO Create study sheet
+** DONE Look at practice questions and solutions
+   CLOSED: [2015-05-05 Tue 12:16]
+** DONE Review midterm solutions
+   CLOSED: [2015-05-05 Tue 12:16]
+** DONE Review lecture notes
+   CLOSED: [2015-05-05 Tue 12:16]
+** DONE Reading assignments
+   CLOSED: [2015-05-05 Tue 12:16]
+** DONE Create study sheet
+   CLOSED: [2015-05-05 Tue 12:16]
 ** DONE Look at Piazza
    CLOSED: [2015-05-05 Tue 00:24]
-** TODO Look at last semester's cheat sheet
+** DONE Look at last semester's cheat sheet
+   CLOSED: [2015-05-05 Tue 12:16]
 ** DONE draw and interpret control graphs
    CLOSED: [2015-05-05 Tue 00:25]
-* To include on cheat sheet
-** TODO Second semester material
-   - List of code smells and refactoring testability
+
 ** TODO Material from first semester
    - Process models and their steps
      - RUP: inception, elaboration, construction, transition
