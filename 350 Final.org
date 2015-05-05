@@ -25,9 +25,9 @@
        - patients were give massive overdoses of radiation
        - It moved some safety features from hardware to software
        - Software from the older version (Therac-20) was reused and
-         was assumed to be workign correctly
+         was assumed to be working correctly
        - *Hamilton, Ontario, July 1985*
-         - During treatment, machine stopped and reported "no does"
+         - During treatment, machine stopped and reported "no dose"
          - This was a common occurence, so the technician pressed "P"
            to proceed and re-deliver the dose
          - This happened four more times, after which the machine went
@@ -119,7 +119,7 @@
            use assertions for conditions that should never occur
        - *Exceptions*
          - a specific means by which code can pass along errors or
-           exceptional events to teh cade that called it
+           exceptional events to the cade that called it
          - try/catch in java
     - /Hunt & Thomas, Pragmatic Programmer, ch. 4/
       - *Design by Contract*
@@ -129,7 +129,7 @@
         - *Postconditions*: what the routine is guaranteed to do; the
           state of the world when the routine is done
         - *Class invariants*: A class ensures that this condition is
-          always true from teh perspective of the caller.
+          always true from the perspective of the caller.
       - Implementing DBC
         - Can partially emulate contracts with *assertions*, but
           assertions don't propogate down an inheritance hierarchy.
@@ -540,7 +540,7 @@
      - *Locate the source of the error (the "fault")*
        - Gather the data that produces the defect
        - Analyze the data and form a hypothesis
-       - Determine how to prove or disprove teh hypothesis either by
+       - Determine how to prove or disprove the hypothesis either by
          testing the program or examining the code
        - Prove or disprove the hypothesis
      - *Fix the defect*
