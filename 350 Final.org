@@ -1,6 +1,9 @@
-#+INFOJS_OPT: view:t toc:t ltoc:t mouse:underline buttons:0 path:http://thomasf.github.io/solarized-css/org-info.min.js
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://thomasf.github.io/solarized-css/solarized-light.min.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="assets/style.css" />
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="assets/github.css" />
+#+HTML_HEAD_EXTRA: <script src="assets/rainbow.js"></script>
+#+HTML_HEAD_EXTRA: <script src="assets/java.js"></script>
 #+TAGS: @reading
+
 
 * CIS 350 Final
 75 point exam. 120 minutes. Double sided study sheet
@@ -9,7 +12,7 @@
 ** TODO Software Process Models
 ** TODO Agile
 ** TODO Software Configuration Management
-** TODO Requirements Gathering and Coumentation
+** TODO Requirements Gathering and Documentation
 ** TODO Requirement Analysis
 ** TODO Software Architecture
 ** TODO Design Concepts
@@ -24,7 +27,7 @@
        - patients were give massive overdoses of radiation
        - It moved some safety features from hardware to software
        - Software from the older version (Therac-20) was reused and
-         was assumed to be workign correctly
+         was assumed to be working correctly
        - *Hamilton, Ontario, July 1985*
          - During treatment, machine stopped and reported "no dose"
          - This was a common occurence, so the technician pressed "P"
@@ -33,7 +36,7 @@
            into suspend mode
          - Patient received 5x dose and died four months later
        - In Tyler Texas (1986) a technician reported "Malfunction 54"
-         which did not exist in the user manuel
+         which did not exist in the user manual
          - the operator had requested 202 units, but only 6 were
            delivered and the patient died five months later
          - the manufacturer could not reproduce this bug so the
@@ -122,7 +125,7 @@
      - lowest level components are tested first.
      - they are then used to facilitate the testing of higher level
        components
-** DONE Test Driven Development and Defensive Drogramming
+** DONE Test Driven Development and Defensive Programming
    - *Test Driven Development*
      - write test cases *first*
      - then write minimum amount of code to pass the test
@@ -145,7 +148,7 @@
            use assertions for conditions that should never occur
        - *Exceptions*
          - a specific means by which code can pass along errors or
-           exceptional events to teh cade that called it
+           exceptional events to the cade that called it
          - try/catch in java
        - [ ] Error code vs assertions vs exceptions
    - /Hunt & Thomas, Pragmatic Programmer, ch. 4/ :reading:
@@ -197,15 +200,14 @@
        one asap
      - *pipelining*: fetch/decode one instruction while executing another
    - *Thread-Level Parallelism*
-     - now we have threads, which allow programs to do more than one
-       thing at a time
+     - threads allow programs to do more than one thing at a time
      - *In Java*
        - each thread has it's own stack (local vars, method args) and
          program counter
        - threads in the same process share a heap (object storage) and
          static variables
        - Defining and starting a Thread
-         #+BEGIN_SRC java
+         #+BEGIN_SRC lang-java
             public class HelloRunnable implements Runnable {
 
                 public void run() {
@@ -225,13 +227,13 @@
        - in java use the =synchronized= keyword
        - it is not possible for two invocations of synchronized methods
          on the same object to interleave
-       - when a synchronized method exits, it establisheds a
+       - when a synchronized method exits, it establishes a
          happens-before relationship with any subsequent invocation of a
          synchronized method for the same object. This guarantees that
          the changes to the state of the object are visible to all
          threads.
-     - *syncrhonized block*: you don't have to synchronize a whole method
-       #+BEGIN_SRC java
+     - *synchronized block*: you don't have to synchronize a whole method
+       #+BEGIN_SRC lang-java
        public void add(int value){
 
            synchronized(this){
@@ -240,7 +242,7 @@
        }
        #+END_SRC
      - *Lock Objects* are a more sophisticated synchronization method
-       #+BEGIN_SRC java
+       #+BEGIN_SRC lang-java
        public class Counter{
 
            private Lock lock = new Lock();
@@ -314,7 +316,7 @@
        - In this example the if statement picks up the case that might
          fall through the cracks if =count= is an odd number.
      - *Minimizing the work inside of loops*
-       - if you can evaluate statments outside of the loop so that
+       - if you can evaluate statements outside of the loop so that
          only the result is used inside, do that.
      - *Sentinel Values*
        - When you have a loop with a compound test, you can save time
@@ -428,7 +430,7 @@
        - when speculative hooks and features are added that aren't
          necessary yet.
        - to get rid of abstract classes use /Collapse Hierarchy/
-       - unnescessary delegation can be removed with /Inline Class/
+       - unnecessary delegation can be removed with /Inline Class/
        - Methods with unused params should be handled with /Remove
          Parameter/
        - Methods with odd abstract names should be handled with
@@ -471,14 +473,35 @@
        - when you need a comment to explain what a block of code does,
          try /Extract Method/
 ** DONE Testing Basics
-   - Executing a program in an attempt to determine whether it behaves
+   - *Testing*: Executing a program in an attempt to determine whether it behaves
      as expected
    - Goal is to find bugs, /not/ prove correctness
-   - *Failure*: when there is a difference between the actual output
-     and the expected output (as reported by the *test oracle*)
-   - *Error*: deviation in internal state (from correct state) that
-     led to failure
+   - *Testing Levels*
+     - *Acceptance Testing*: assess software with respect to
+       *requirements*
+       - does software meet requirements?
+     - *System Testing*: assess software with respect to
+       *architectural design*
+       - does software meet specifications of architectural design?
+     - *Integration Testing*: assess software with respect to
+       *subsystem design*
+       - tests whether the *interfaces between modules* in a give
+         subsystem have consistent assumtions and communicate correctly.
+     - *Module Testing*: assess software with respect to *detailed design*
+       - tests *individual modules* in isolation.
+     - *Unit Testing*: assess software with respect to *implementation*
+       - tests the units produced by the implementation phase.
+       - lowest level of testing.
+   - *Validation*: the process of /evaluating/ software at the /end/
+     of software development to ensure compliance with intended usage.
+   - *Verification*: the process of /determining/ whether the products
+     of a given phase of the software development process fulfill the
+     requirements established during the previous phase.
    - *Fault*: static defect in code that led to error
+   - *Error*: deviation in internal state (from correct
+     state) that led to failure
+   - *Failure*: when there is a difference between the actual
+     output and the expected output (as reported by the *test oracle*)
    - *Test Case Generation*
      - *Exhaustive testing*: all possible inputs. generally not
        feasible
@@ -490,39 +513,59 @@
        tests that achieve adequate coverage level
        - *Black-Box Testing*: try to find test cases that cover as
          much of the /specification (I/O) space/ as possible
-         - equivalence classes
-         - robustness cases
-         - boundary conditions
        - *White-Box Testing*: try to find test cases that cover as
          much of the /code/ as possible.
      - *Fault-based*: show that program does not exhibit certain types
        of faults
-** TODO Black-Box Testing
+** DONE Black-Box Testing
    - *Criteria*: how much of the *specification* is covered
-   - *Assumptions*
-     1. if a failure is revealed for a given value of input variable
-        =v=, then it is likely to be revealed for similar values of
-        =v=
-        - as a result of this assumption, we can split up the
-          specification space into *equivalence classes*
-     2. if a failure is revealed for a given value of input variable
-        =v=, then it is likely to be revealed regardless of the value
-        of other variables (single fault assumption)
-   - Boundary value: for each variable, hold others at a normal value,
-     and test min, min+, max, max-, norm
-     - To test robustness, add min- and max+
-   - Worst case testing: like boundary, but without single fault
-     assumption; test boundaries simultaneously
-   - Weak-normal: single fault, n = classes in partition with largest number of subsets
-     - Weak robust: test weak-normal, and one invalid for each var
-   - Strong normal: multiple fault, cartesian product
-     - Strong robust: test invalid in addition to above
-
-** TODO White-Box Testing
+   - *Boundary Value Analysis*
+     - technique in which tests are designed to include
+       representatives of boundary values in a range.
+     - min, min+, max, max-, norm
+   - *Robustness Testing*
+     - extension of boundary value analysis.
+     - in addition to the boundary value analysis values of a
+       variable, we see what happens when the extrema are exceeded
+       with a value slightly greater than the maximum and a value
+       slightly less than the minimum.
+     - min- and max+ added to boundary value analysis
+     - forces attention on exception handling.
+   - *Worst case testing*: like boundary value analysis, but without
+     the single fault assumption; test boundary values together
+   - *Equivalence Class Testing*
+     - *motivations*: want to have a sense of complete testing and would
+       like to avoid redundancy, neither of which is realized by
+       boundary value testing.
+     - *Equivalence Classes*
+       - divide input data of a software unit into partitions of
+         equivalent data from which test cases can be derived
+       - test cases are designed to cover each partition at least once
+     - *Assumptions*
+       1. if a failure is revealed for a given value of input variable
+          =v=, then it is likely to be revealed for similar values of
+          =v=
+          - as a result of this assumption, we can split up the
+            specification space into *equivalence classes*
+       2. if a failure is revealed for a given value of input variable
+          =v=, then it is likely to be revealed regardless of the value
+          of other variables (single fault assumption)
+     - *Weak Normal*
+       - one variable from each equivalence class (single fault
+         assumption), n = classes in partition with largest number subsets
+     - *Strong Normal*
+       - test cases taken from each element of cartesian product of
+         the equivalence classes (multiple fault assumption).
+       - guarantees notion of completeness
+     - *Weak Robust*
+       - considers invalid values, single fault assumtion
+     - *Strong Robust*
+       - considers invalid values, multiple fault assumption
+** DONE White-Box Testing
    - /"Treat the code as a graph and try to cover it"/
    - tests internal structures of an applications as opposed to its
      functionality
-   - *Control flow graph*: representation, using grpah notation, of
+   - *Control flow graph*: representation, using graph notation, of
      all paths that might be traversed through a program during its
      execution.
    - *Coverage metrics*
@@ -537,13 +580,29 @@
        - path coverage subsumes statement and branch coverage. if
          you've covered 100% of the paths, you've covered 100% of the
          statements and branches. Every path executed at least once
-** TODO Debugging
+** DONE Debugging
+   - "Scientific Method"
+     - *Stabilize the error*
+       - find the simplest test case that still produces the error
+     - *Locate the source of the error (the "fault")*
+       - Gather the data that produces the defect
+       - Analyze the data and form a hypothesis
+       - Determine how to prove or disprove the hypothesis either by
+         testing the program or examining the code
+       - Prove or disprove the hypothesis
+     - *Fix the defect*
+     - *Test the fix*
+     - *Look for similar errors*
+   - *Regression Testing*
+     - testing that is done after changes are made to the software.
+     - helps ensure that the updated software still possesses the
+       functionality it had before the updates.
+   - Black-box debugging: based on equivalence classes
+   - White-box debugging: based on code covearge (slicing and dicing)
    - Levels of fault localization: deduction, observation, induction, experimentation
    - Fault localization using scientific method: gather evidence, form
      hypothesis, try to disprove hypothesis, repeat
-   - Black-box debugging: based on equivalence classes
-   - White-box debugging: based on code covearge (slicing and dicing)
-   - Regression testing
+
 
 * Exam format
   - Answer multiple choice questions
